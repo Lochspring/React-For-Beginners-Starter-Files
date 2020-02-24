@@ -6,10 +6,4 @@ const NotFound = props => (
   </header>
 );
 
-// class Header extends React.Component {
-//   render() {
-//     return <></>;
-//   }
-// }
-
 export default NotFound;
