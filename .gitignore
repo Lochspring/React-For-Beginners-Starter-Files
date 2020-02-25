@@ -5,3 +5,4 @@ node_modules/
 notes.md
 catch-of-the-day/build/
 catch-of-the-day/Catch of the Day.code-workspace
+catch-of-the-day/src/base.js

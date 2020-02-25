@@ -1,9 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { formatPrice } from "../helpers";
 
 class Fish extends React.Component {
-  updateOrder = () => {
-    this.props.addOrder(this.props.index);
+  static propTypes = {
+    details: PropTypes.shape({
+      image: PropTypes.string,
+      desc: PropTypes.string,
+      name: PropTypes.string,
+      status: PropTypes.string,
+      price: PropTypes.number
+    }),
+    addOrder: PropTypes.func
   };
   render() {
     const { image, desc, name, status, price } = this.props.details;
@@ -16,7 +24,10 @@ class Fish extends React.Component {
           <span className="price">{formatPrice(price)}</span>
         </h3>
         <p>{desc}</p>
-        <button disabled={!isAvailable} onClick={this.updateOrder}>
+        <button
+          disabled={!isAvailable}
+          onClick={() => this.props.addOrder(this.props.index)}
+        >
           {isAvailable ? "Add to Order" : "Sold Out"}
         </button>
       </li>

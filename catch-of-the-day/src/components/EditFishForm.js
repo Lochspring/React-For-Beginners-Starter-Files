@@ -1,12 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class EditFishForm extends React.Component {
+  static propTypes = {
+    fish: PropTypes.shape({
+      image: PropTypes.string,
+      desc: PropTypes.string,
+      name: PropTypes.string,
+      status: PropTypes.string,
+      price: PropTypes.number
+    }),
+    index: PropTypes.string,
+    deleteFish: PropTypes.func,
+    updateFish: PropTypes.func
+  };
   handleChange = e => {
     //e.currentTarget.value;
 
     const updatedFish = {
       ...this.props.fish,
-      [e.currentTarget.name]: e.currentTarget.value
+      [e.currentTarget.name]:
+        e.currentTarget.name === "price"
+          ? parseFloat(e.currentTarget.value)
+          : e.currentTarget.value
     };
 
     this.props.updateFish(this.props.index, updatedFish);
@@ -50,6 +66,9 @@ class EditFishForm extends React.Component {
           value={this.props.fish.image}
           placeholder="Image"
         />
+        <button onClick={() => this.props.deleteFish(this.props.index)}>
+          Delete Fish from Inv.
+        </button>
       </div>
     );
   }
